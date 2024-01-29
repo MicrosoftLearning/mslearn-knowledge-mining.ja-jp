@@ -1,2 +1,2 @@
-# mslearn-knowledge-mining.ja-jp
-Japanese repo
+# mslearn-knowledge-mining
+Azure AI ナレッジ マイニング モジュールのラボ ファイル

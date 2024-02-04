@@ -12,9 +12,9 @@ Azure AI Search は、AI スキルのエンリッチメント パイプライン
 
 ## Visual Studio Code でアプリを開発する準備をする
 
-Visual Studio Code を使って検索アプリを開発します。 アプリのコード ファイルは、GitHub リポジトリで提供されています。
+Visual Studio Code を使用して検索アプリを開発します。 アプリのコード ファイルは、GitHub リポジトリで提供されています。
 
-> **ヒント**: 既に **mslearn-knowledge-mining** リポジトリをクローンしている場合は、Visual Studio Code で開きます。 それ以外の場合は、次の手順に従って開発環境に複製します。
+> **ヒント**: **mslearn-knowledge-mining** リポジトリを既にクローンしている場合は、Visual Studio Code で開きます。 それ以外の場合は、次の手順に従って開発環境に複製します。
 
 1. Visual Studio Code を起動します。
 1. パレットを開き (SHIFT+CTRL+P)、**Git:Clone** コマンドを実行して、`https://github.com/MicrosoftLearning/mslearn-knowledge-mining` リポジトリをローカル フォルダーに複製します (どのフォルダーでも問題ありません)。
@@ -146,7 +146,7 @@ Visual Studio Code を使って検索アプリを開発します。 アプリの
     - **関数アプリ名**: *一意の名前*
     - **公開**: コード
     - **ランタイム スタック**:Node.js
-    - **[バージョン]** : 14 LTS
+    - **[バージョン]**: 18 LTS
     - **リージョン**: *Azure AI 検索リソースと同じリージョン*
 
 2. デプロイが完了するのを待ってから、デプロイされた関数アプリ リソースに移動します。

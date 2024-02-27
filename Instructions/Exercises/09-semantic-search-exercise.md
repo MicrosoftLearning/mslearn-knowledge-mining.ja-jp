@@ -1,26 +1,26 @@
 ---
 lab:
-  title: セマンティック検索を設定する
+  title: セマンティック ランカーを設定する
 ---
 
-# セマンティック検索を設定する
+# セマンティック ランカーを設定する
 
-> **注** このラボを完了するには、管理者アクセス権が与えられている [Azure サブスクリプション](https://azure.microsoft.com/free?azure-portal=true)が必要です。 この演習では、課金対象レベルの Azure AI 検索サービスも必要です。
+> **注** このラボを完了するには、管理者アクセス権が与えられている [Azure サブスクリプション](https://azure.microsoft.com/free?azure-portal=true)が必要です。 この演習では、課金対象レベルの **Azure AI 検索**サービスも必要です。
 
-この演習では、インデックスにセマンティック検索を追加し、クエリにセマンティック検索を使用します。
+この演習では、インデックスにセマンティック ランカーを追加し、クエリにセマンティック ランカーを使用します。
 
-## セマンティック検索を有効にする
+## セマンティック ランカーを有効にする
 
 1. Azure portal を開き、サインインします。
 1. **[すべてのリソース]** を選択し、お使いの検索サービスを選択します。
-1. ナビゲーション ウィンドウで、**[セマンティック検索 (プレビュー)]** を選択します。
+1. ナビゲーション ウィンドウで、**[Semantic ranker (preview)]\(セマンティック ランカー (プレビュー)\)** を選択します。
 1. **[可用性]** の **[無料]** オプションで、**[プランの選択]** を選択します。
 
-![セマンティック検索ダイアログ ボックスのスクリーンショット。](../media/semantic-search/semanticsearch.png)
+![セマンティック ランカー ダイアログ ボックスのスクリーンショット。](../media/semantic-search/semanticsearch.png)
 
 ## サンプル インデックスをインポートする
 
-1. Azure portal のホーム ページで、**[すべてのリソース]** を選択し、お使いの検索サービスを選択します。
+1. 検索サービスの **[概要]** ページに戻ります。
 1. **[データのインポート]** を選択します。
 
     ![データのインポート ボタンのスクリーンショット。](../media/semantic-search/importdata.png)
@@ -33,11 +33,10 @@ lab:
 
 ## セマンティック ランク付けを構成する
 
-検索インデックスを用意し、セマンティック検索を有効にしたら、セマンティックの順位を構成できます。 クエリ要求でのプレビュー API をサポートする検索クライアントが必要です。 Search エクスプローラーは、Azure portal、Postman アプリ、Azure SDK for .NET、または Azure SDK for Python で使用できます。 この演習では、Azure portal で Search エクスプローラーを使用します。
+検索インデックスを用意し、セマンティック ランカーを有効にしたら、セマンティックの順位を構成できます。 クエリ要求でのプレビュー API をサポートする検索クライアントが必要です。 Search エクスプローラーは、Azure portal、Postman アプリ、Azure SDK for .NET、または Azure SDK for Python で使用できます。 この演習では、Azure portal で Search エクスプローラーを使用します。
 
 セマンティックの順位付けを構成するには、次の手順に従います。
 
-1. Azure portal のホーム ページで、**[すべてのリソース]** を選択し、お使いの検索サービスを選択します。
 1. ナビゲーション バーの **[検索管理]** で、**[インデックス]** を選択します。
 
     ![[インデックス] ボタンのスクリーンショット。](../media/semantic-search/indexes.png)
@@ -53,26 +52,20 @@ lab:
 1. **[キーワード] フィールド**の下の **[フィールド名]** で、**[タグ] **を選択します。
 1. **[保存]** を選択します。
 1. インデックス ページで、**[保存]** を選択します。
-1. Azure portal のホーム ページで、**[すべてのリソース]** を選択し、お使いの検索サービスを選択します。
-1. ナビゲーション バーの **[検索管理]** で、**[インデックス]** を選択します。
-
-    ![[インデックス] ボタンのスクリーンショット。](../media/semantic-search/indexes.png)
-
-1. インデックスを選択します。
 1. **[Search エクスプローラー]** を選択します。
 1. **[ビュー]** を選択し、**[JSON ビュー]** を選択します。
 1. JSON クエリ エディターに、次のテキストを入力します。
 
     ```json
         {
-            "queryType": "semantic",
-            "queryLanguage" : "en-us",
-            "search": "all hotels near the water" , 
-            "semanticConfiguration": "hotels-conf" , 
-            "searchFields": "",
-            "speller": "lexicon" , 
-            "answers": "extractive|count-3",
-            "count": true
+         "queryType": "semantic",
+         "queryLanguage" : "en-us",
+         "search": "all hotels near the water" , 
+         "semanticConfiguration": "hotels-conf" , 
+         "searchFields": "",
+         "speller": "lexicon" , 
+         "answers": "extractive|count-3",
+         "count": true
         }
     ```
 
@@ -85,5 +78,5 @@ Azure AI 検索サービスが不要になった場合は、コストを削減�
 
 >**注**: Azure AI 検索サービスを削除すると、サブスクリプションがリソースに対して課金されなくなります。 ただし、サブスクリプションにストレージが存在する限り、データ ストレージに対して少額が課金されます。 Cognitive Search サービスの探索が完了した場合は、Cognitive Search サービスと関連リソースを削除できます。 ただし、このシリーズの他のいずれかのラボを完了する予定がある場合は、作成し直す必要があります。
 > リソースを削除するには:
-> 1. [Azure portal](https://portal.azure.com?azure-portal=true) の **[リソース グループ]** ページで、Cognitive Search サービスの作成時に指定したリソース グループを開きます。
+> 1. [Azure portal](https://portal.azure.com?azure-portal=true ) の **[リソース グループ]** ページで、Cognitive Search サービスの作成時に指定したリソース グループを開きます。
 > 1. **[リソース グループの削除]** をクリックし、リソース グループ名を入力して削除することを確認し、**[削除]** を選択します。

@@ -167,8 +167,7 @@ Azure portal では、ドキュメント内の最初のフィールドを翻訳�
 
 ### 更新したインデックスをテストする
 
-1. ページの上部にある検索サービス **advanced-search-service-12345 | Indexes** リンクを選びます。
-1. **[概要]** ペインで **[インデックス]** を選択し、**[hotels-sample-index]** を選択します。
+1. **[hotels-sample-index]** ページの **[検索エクスプローラー]** タブに戻ります。
 1. **[クエリ文字列]** に、前と同じ検索を入力します。
 
     `lake + view&$select=HotelName,Description,Category,Tags&$count=true`

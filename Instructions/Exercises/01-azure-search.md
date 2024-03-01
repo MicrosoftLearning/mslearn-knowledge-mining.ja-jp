@@ -86,7 +86,7 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
 3. 変更を保存してから、**01-azure-search** フォルダーを右クリックして、統合ターミナルを開きます。
 4. 次のコマンドを入力して、Azure CLI を使用して Azure サブスクリプションにサインインします。
 
-    ```
+    ```powershell
     az login
     ```
 
@@ -94,7 +94,7 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
 
 5. 次のコマンドを入力して、バッチファイルを実行します。 これにより、ストレージ アカウントに BLOB コンテナーが作成され、**データ** フォルダー内のドキュメントがそこにアップロードされます。
 
-    ```
+    ```powershell
     UploadDocs
     ```
 
@@ -135,7 +135,7 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
 8. **[キー]** が **metadata_storage_path** に設定されていることを確かめます。 **[Suggester 名]** は空白のままにし、 **[検索モード]** は既定のままにします。
 9. インデックス フィールドに次の変更を加え、他のすべてのフィールドはデフォルト設定のままにします (**重要**: テーブル全体を表示するには、右にスクロールする必要がある場合があります)。
 
-    | フィールド名 | [取得可能] | フィルターの適用 | ソート可能 | ファセット可能 | 検索可能 |
+    | フィールド名 | [取得可能] | フィルター可能 | ソート可能 | ファセット可能 | 検索可能 |
     | ---------- | ----------- | ---------- | -------- | --------- | ---------- |
     | metadata_storage_size | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | | |
     | metadata_storage_last_modified | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | | |
@@ -243,7 +243,7 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
 4. Visual Studio Code の **skillset.json** で、**YOUR_COGNITIVE_SERVICES_KEY** プレースホルダーを、クリップボードにコピーした Azure AI サービス キーに置き換えます。
 5. JSON ファイルをスクロールして、Azure portal の Azure AI 検索ユーザー インターフェイスを使用して作成したスキルの定義が含まれていることを確認します。 スキルのリストの下部に、次の定義で追加のスキルが追加されました。
 
-    ```
+    ```json
     {
         "@odata.type": "#Microsoft.Skills.Text.V3.SentimentSkill",
         "defaultLanguageCode": "en",
@@ -279,7 +279,7 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
 2. インデックスをスクロールして、フィールド定義を表示します。 一部のフィールドはソースドキュメントのメタデータとコンテンツに基づいており、その他のフィールドはスキルセットのスキルの結果です。
 3. Azure portal で定義したフィールドのリストの最後に、2 つのフィールドが追加されていることに注意してください
 
-    ```
+    ```json
     {
         "name": "sentiment",
         "type": "Edm.String",
@@ -306,19 +306,18 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
 1. Visual Studio Code の **modify-search** フォルダーで、**indexer.json** を開きます。 これは、**margies-indexer** の JSON 定義を示しています。これは、ドキュメントのコンテンツとメタデータから抽出されたフィールド (**fieldMappings** セクション) と、スキルセットのスキルによって抽出された値 (**outputFieldMappings** セクション) をインデックスのフィールドにマップします。
 2. **fieldMappings** リストで、**metadata_storage_path** 値の base-64 エンコード キー フィールドへのマッピングに注意してください。 これは、**metadata_storage_path** をキーとして割り当て、Azure portal でキーをエンコードするオプションを選択したときに作成されました。 さらに、新しいマッピングは、同じ値を **url** フィールドに明示的にマップしますが、Base-64 エンコーディングは使用しません。
 
-    ```
+    ```json
     {
         "sourceFieldName" : "metadata_storage_path",
         "targetFieldName" : "url"
-    }
-    
+    }    
     ```
 
     ソース ドキュメント内の他のすべてのメタデータおよびコンテンツ フィールド インデックス内の同じ名前のフィールドに暗黙的にマップされます。
 
 3. スキルセットのスキルからの出力をインデックス フィールドにマップする **ouputFieldMappings** セクションを確認します。 これらのほとんどは、ユーザー インターフェイスで行った選択を反映していますが、センチメント スキルによって抽出された **sentimentLabel** 値を、インデックスに追加した **sentiment** フィールドにマッピングするために、次のマッピングが追加されています。
 
-    ```
+    ```json
     {
         "sourceFieldName": "/document/sentimentLabel",
         "targetFieldName": "sentiment"
@@ -330,7 +329,7 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
 1. **modify-search** フォルダーを右クリックして、統合ターミナルを開きます。
 2. **modify-search** フォルダーのターミナル ペインで、次のコマンドを入力して、**modify-search.cmd** スクリプトを実行します。このスクリプトは、JSON 定義を REST インターフェイスに送信し、インデックス作成を開始します。
 
-    ```
+    ```powershell
     ./modify-search
     ```
 

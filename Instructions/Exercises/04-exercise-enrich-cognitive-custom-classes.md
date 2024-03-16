@@ -222,13 +222,8 @@ Azure Cognitive Search インデックスを設定し、Azure 関数を作成し
 
 Cognitive Search カスタム スキルセットから呼び出す Python 関数アプリを作成します。 この関数アプリでは、カスタム テキスト分類モデルを使用して、検索インデックスをエンリッチします。
 
-1. VScode を開き、ターミナルで、この GitHub リポジトリをマシンにクローンします。
-
-    ```bash
-    git clone https://github.com/MicrosoftLearning/mslearn-doc-intelligence movie-genre-function
-    ```
-
-1. Visual Studio Code で、先ほどクローンした **movie-genre-function** フォルダーを開きます。
+1. [必要なファイルをダウンロード](https://github.com/MicrosoftLearning/mslearn-knowledge-mining/raw/main/Labfiles/04-enrich-custom-classes/movie-genre-function.zip)し、すべてのファイルを含むフォルダーを展開します。
+1. Visual Studio Code を開き、先ほどダウンロードした **movie-genre-function** フォルダーを開きます。
 
     ![関数アプリの最適化ダイアログを示す Visual Studio Code のスクリーンショット。](../media/04-media/optimize-visual-studio-code.png)
 1. 必要な拡張機能をすべてインストールしている場合、プロジェクトを最適化するように求められます。 **[はい]** を選択します。

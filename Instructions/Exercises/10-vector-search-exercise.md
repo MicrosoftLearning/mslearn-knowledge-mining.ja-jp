@@ -12,7 +12,7 @@ lab:
 - [Postman](https://www.postman.com/downloads/) アプリ
 - Azure サブスクリプション
 - Azure AI Search Service
-- [Postman サンプル コレクション](https://github.com/Azure/cognitive-search-vector-pr/tree/main/postman-collection) *Vector-Search-Quickstart.postman_collection v1.0 json*.
+- このリポジトリ内にある Postman サンプル コレクション - *Vector-Search-Quickstart.postman_collection v1.0 json*。
 
 > **注** Postman アプリの詳細については、必要に応じて[こちら](https://learn.microsoft.com/en-us/azure/search/search-get-started-rest)をご覧ください。
 
@@ -20,24 +20,24 @@ lab:
 
 まず、次の手順を行ってプロジェクトを設定します。
 
-1. Cognitive Search サービスの **URL** と**キー**をメモします。
+1. Azure AI 検索サービスの **URL** と**キー**をメモします。
 
     ![サービス名とキーの場所の図。](../media/vector-search/search keys.png)
 
-1. [Postman サンプル コレクション](https://github.com/Azure/cognitive-search-vector-pr/tree/main/postman-collection)をダウンロードします。 
+1. [Postman サンプル コレクション](https://github.com/MicrosoftLearning/mslearn-knowledge-mining/blob/main/Labfiles/10-vector-search/Vector%20Search.postman_collection%20v1.0.json)をダウンロードします。
 1. Postman を開き、**[インポート]** ボタンを選択してコレクションをインポートし、コレクション フォルダーをボックスにドラッグ アンド ドロップします。
 
     ![[インポート] ダイアログ ボックスの画像](../media/vector-search/import.png)
 
 1. **[フォーク]** ボタンを選択してコレクションのフォークを作成し、一意の名前を追加します。
 1. コレクション名を右クリックし、**[編集]** を選択します。
-1. **[変数]** タブを選択し、Cognitive Search サービスの検索サービスとインデックス名を使用して、次の値を入力します。
+1. **[変数]** タブを選択し、Azure AI 検索サービスの検索サービス名とインデックス名を使用して、以下の値を入力します。
 
     ![変数設定の例を示す図](../media/vector-search/variables.png)
 
 1. **[保存]** ボタンを選択して、変更を保存します。
 
-Azure Cognitive Search サービスに要求を送信する準備ができました。
+Azure AI 検索サービスに要求を送信する準備ができました。
 
 ## インデックスを作成する
 

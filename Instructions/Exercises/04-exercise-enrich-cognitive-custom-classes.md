@@ -27,7 +27,7 @@ lab:
 
 ### 事前構築済みの ARM テンプレートをデプロイする
 
-1. [![Azure にデプロイ。](../media/04-media/deploy-azure.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoftLearning%2Fmslearn-doc-intelligence%2Fmain%2Fcognitive-search%2Fazuredeploy.json) このリンクを選択して、開始リソースを作成します。 [直接リンク](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoftLearning%2Fmslearn-doc-intelligence%2Fmain%2Fcognitive-search%2Fazuredeploy.json)をコピーし、検索バーに貼り付けることが必要になる場合があります。
+1. [![Azure にデプロイ。](../media/04-media/deploy-azure.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoftLearning%2Fmslearn-knowledge-mining%2Fmain%2FLabfiles%2F04-enrich-custom-classes%2Fazuredeploy.json) このリンクを選択して、開始リソースを作成します。 [直接リンク](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoftLearning%2Fmslearn-knowledge-mining%2Fmain%2FLabfiles%2F04-enrich-custom-classes%2Fazuredeploy.json)をコピーし、検索バーに貼り付けることが必要になる場合があります。
 
     ![Azure にリソースをデプロイするときに表示されるオプションのスクリーンショット。](../media/04-media/deploy-azure-resources.png)
 1. **[リソース グループ]** で、**[新規作成]** を選択して **cog-search-language-exe** という名前を付けます。
@@ -69,12 +69,9 @@ Azure Cognitive Search インデックスを設定し、Azure 関数を作成し
 },
 ```
 
-1. GitHub から[サンプル データ](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/Custom%20text%20classification/Custom%20multi%20classification%20-%20movies%20summary.zip)をダウンロードして、コンピューターにローカルに保存します。
+1. **Labfiles/04-enrich-custom-classes** に移動し、すべてのファイルを含む **movies summary.zip** フォルダーを抽出します。
 
-    ![サンプル ZIP データをダウンロードするときに選ぶ場所を示すスクリーンショット。](../media/04-media/download-sample-data.png)
-1. **Custom multi classification - movies summary.zip** ファイルを開き、すべてのファイルが含まれるフォルダーを展開します。
-
-    > **注** これらのファイルを使用して Language Studio でモデルをトレーニングし、Azure Cognitive Search 内のすべてのファイルにインデックスを付けます。
+    > **注**: これらのファイルを使用して Language Studio 内でモデルをトレーニングし、また、Azure AI 検索内のすべてのファイルにインデックスを付けます。
 
 1. [Azure portal](https://portal.azure.com/) で **[リソース グループ]** を選択し、該当するリソース グループを選択します。
 1. 作成したストレージ アカウント (例: **acs18245str**) を選択します。
@@ -89,7 +86,7 @@ Azure Cognitive Search インデックスを設定し、Azure 関数を作成し
     ![コンテナーにファイルをアップロードしているスクリーンショット。](../media/04-media/upload-files.png)
 1. ペインの上部にある **[アップロード]** を選択します。
 1. **[BLOB のアップロード]** ペインで、**[ファイルの参照]** を選択します。
-1. サンプル ファイルをダウンロードした場所に移動し、すべてのテキスト (`.txt`) ファイルと json (`.json`) ファイルを選択します。
+1. サンプル ファイルを抽出した場所に移動し、すべてのテキスト (`.txt`) および json (`.json`) ファイルを選択します。
 1. ペインで **[アップロード]** を選択します。
 1. **[BLOB のアップロード]** ペインを閉じます。
 
@@ -99,11 +96,7 @@ Azure Cognitive Search インデックスを設定し、Azure 関数を作成し
 1. **[+ リソースの作成]** を選択し、[言語サービス] を検索します。**
 1. **[言語サービス]** で **[作成]** を選択します。
 1. **カスタム テキスト分類とカスタム固有表現認識**を含むオプションを選択します。
-
-    ![カスタム テキスト分類機能を追加するスクリーンショット。](../media/04-media/select-additional-features.png)
 1. **[リソースの作成を続行する]** を選択します。
-
-    ![言語サービスを作成するために必要な情報を示すスクリーンショット。](../media/04-media/enter-language-service-information.png)
 1. **[リソース グループ]** で、**cog-search-language-exe** を選択します。
 1. **[リージョン]** で、上記で使用したリージョンを選択します。
 1. **[名前]** に、「**learn-language-service-for-custom-text**」と入力します。 これはグローバルに一意である必要があるため、ランダムな数値または文字を末尾に追加しなければならないことがあります。

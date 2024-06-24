@@ -15,7 +15,7 @@ lab:
 
 時間を節約するために、この Azure Resource Manager テンプレートを選び、演習の後半で必要になるリソースを作成します。
 
-1. [![Azure にデプロイ。](../media/07-media/deploy-azure.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoftLearning%2Fmslearn-doc-intelligence%2Fmain%2Fcognitive-search%2Fazuredeploy.json) このリンクを選んで Azure Cognitive Search サービスを作成します。
+1. [Azure にリソースをデプロイする](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoftLearning%2Fmslearn-knowledge-mining%2Fmain%2FLabfiles%2F07-exercise-add-to-index-use-push-api%20lab-files%2Fazuredeploy.json) - Azure AI リソースを作成するには、このリンクを選択します。
     ![Azure にリソースをデプロイするときに表示されるオプションのスクリーンショット。](../media/07-media/deploy-azure-resources.png)
 1. **[リソース グループ]** で、**[新規作成]** を選択して **cog-search-language-exe** という名前を付けます。
 1. **[リージョン]** で、お近くの[サポート対象リージョン](/azure/ai-services/language-service/custom-text-classification/service-limits#regional-availability)を選択します。

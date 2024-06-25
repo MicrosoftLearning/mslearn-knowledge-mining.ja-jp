@@ -15,7 +15,7 @@ lab:
 
 デバッグ セッションの使用を開始する前に、Azure Cognitive Search サービスを作成する必要があります。
 
-1. [![Azure リソースのデプロイ ボタン。](../media/08-media/deploy-azure.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-search-knowledge-mining%2Fmaster%2Fazuredeploy.json) このボタンを選択すると、Azure portal に必要なすべてのリソースがデプロイされます。
+1. [リソースを Azure にデプロイする](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-search-knowledge-mining%2Fmain%2Fazuredeploy.json) - このリンクを選択して、Azure portal で必要なすべてのリソースをデプロイします。
 
     ![arm デプロイ テンプレートのスクリーンショット。フィールドが入力されています。](../media/08-media/arm-template-deployment.png)
 
@@ -117,7 +117,7 @@ lab:
 1. 次に、スキルセットが Azure AI サービス リソースにアタッチされていることを確認する必要があります。そうしないと、基本的な見積もりに達し、インデクサーがタイムアウトになります。 これを行うには、左側のウィンドウで **[スキルセット]** を選択し、**hotels-sample-skillset** を選択します。
 
     ![スキルセットの一覧を示すスクリーンショット。](../media/08-media/update-skillset.png)
-1. **[AI サービス]** タブを選択し、一覧内の AI サービス リソースを選択します。
+1. **[AI サービスの接続]** を選択した後、一覧から AI サービス リソースを選択します。
 
     ![スキルセットにアタッチする Azure AI サービス リソースを示すスクリーンショット。](../media/08-media/skillset-attach-service.png)
 1. **[保存]** を選択します。

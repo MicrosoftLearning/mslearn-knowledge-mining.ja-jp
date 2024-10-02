@@ -56,7 +56,7 @@ Margie's Travel 用に作成するソリューションでは、お使いの Azu
     - **ストレージ アカウント名**: *一意の名前を入力します*
     - **[リージョン]**: 使用できるリージョンを選択します**
     - **パフォーマンス**: 標準
-    - **レプリケーション**: ローカル冗長ストレージ (LRS)
+    - **冗長**: ローカル冗長ストレージ (LRS)
     - **[詳細設定]** タブで、*[個々のコンテナーでの匿名アクセスの有効化を許可する]* の横にあるボックスをチェックします。
 2. デプロイが完了するまで待ち、デプロイされたリソースに移動します。
 3. **[概要]** ページで、**サブスクリプション ID** に注意してください。これはストレージ アカウントがプロビジョニングされているサブスクリプションを識別します。
@@ -231,7 +231,7 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
 1. Azure portal で、Azure AI 検索リソースの **[概要]** ページに戻ります。ページの上部のセクションで、リソースの **URL** (表示例: **https://resource_name.search.windows.net**) を見つけてクリップボードにコピーします。
 2. Visual Studio Code の [エクスプローラー] ペインで **01-azure-search** フォルダーとその **modify-search** サブフォルダーを展開し、**modify-search.cmd** を選択して開きます。 このスクリプト ファイルを使用して、JSON を Azure AI サービス REST インターフェイスに送信する *cURL* コマンドを実行します。
 3. **modify-search.cmd** で、**YOUR_SEARCH_URL** プレースホルダーをクリップボードにコピーした URL に置き換えます。
-4. Azure portal で、Azure AI 検索リソースの **[キー]** ページを表示し、**プライマリ管理者キー**をクリップボードにコピーします。
+4. Azure portal の **[設定]** セクションで、Azure AI 検索リソースの **[キー]** ページを表示し、**プライマリ管理者キー**をクリップボードにコピーします。
 5. Visual Studio Code で、**YOUR_ADMIN_KEY** プレースホルダーをクリップボードにコピーしたキーに置き換えます。
 6. 変更を **modify-search.cmd** に保存します (ただし、まだ実行しないでください)
 
@@ -239,7 +239,7 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
 
 1. Visual studio Code の **modify-search** フォルダーで、**skillset.json** を開きます。 これは、**margies-skillset** の JSON 定義を示しています。
 2. スキルセット定義の上部にある **cognitiveServices** オブジェクトを確認してください。このオブジェクトは、Azure AI サービス リソースをスキルセットに接続するために使用されます。
-3. Azure portal で、Azure AI サービス リソース (Azure AI 検索リソースでは<u>ありません</u>) を開き、その **[キー]** ページを表示します。 次に、**キー 1** をクリップボードにコピーします。
+3. Azure portal で、Azure AI サービス リソース (Azure AI 検索リソースでは<u>ありません</u>) を開き、**[リソース管理]** セクションで **[キーとエンドポイント]** ページを表示します。 次に、**キー 1** をクリップボードにコピーします。
 4. Visual Studio Code の **skillset.json** で、**YOUR_COGNITIVE_SERVICES_KEY** プレースホルダーを、クリップボードにコピーした Azure AI サービス キーに置き換えます。
 5. JSON ファイルをスクロールして、Azure portal の Azure AI 検索ユーザー インターフェイスを使用して作成したスキルの定義が含まれていることを確認します。 スキルのリストの下部に、次の定義で追加のスキルが追加されました。
 
@@ -375,13 +375,13 @@ Visual Studio Code を使用して検索アプリを開発します。 アプリ
     **C#**
 
     ```
-    dotnet add package Azure.Search.Documents --version 11.1.1
+    dotnet add package Azure.Search.Documents --version 11.6.0
     ```
 
     **Python**
 
     ```
-    pip install azure-search-documents==11.0.0
+    pip install azure-search-documents==11.5.1
     ```
 
 3. **margies-travel** フォルダーの内容を表示し、構成設定用のファイルが含まれていることに注意してください
@@ -461,7 +461,7 @@ Web アプリには、検索結果を処理およびレンダリングするた�
     - **Mojave desert** (この用語が一部のドキュメントで*場所*として識別されていることに注意してください)。
 10. Margie's Travel の Web サイトが含まれているブラウザー タブを閉じ、Visual Studio Code に戻ります。 次に、**margies-travel** フォルダー (dotnet または flask アプリケーションが実行されている) の Python ターミナルで、Ctrl+C を入力してアプリを停止します。
 
-## 演習用リソースを削除する
+## クリーンアップ
 
 これで演習が完了したので、不要になったすべてのリソースを削除します。 Azure リソースを削除します。
 

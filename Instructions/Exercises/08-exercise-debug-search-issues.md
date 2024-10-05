@@ -126,5 +126,6 @@ lab:
 
     ![解決済みのすべてを示すスクリーンショット。](../media/08-media/warnings-fixed-indexer.png)
 
-> [!TIP]
-> これで演習は完了です。Azure AI 検索サービスの探索が終了した場合は、演習中に作成した Azure リソースを削除してください。 これを行うための最も簡単な方法は、**acs-cognitive-search-exercise** リソース グループの削除です。
+### クリーンアップ
+
+ これで演習は完了です。Azure AI 検索サービスの探索が終了した場合は、演習中に作成した Azure リソースを削除してください。 これを行うための最も簡単な方法は、**acs-cognitive-search-exercise** リソース グループの削除です。

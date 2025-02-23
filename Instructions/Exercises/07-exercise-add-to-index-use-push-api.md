@@ -27,7 +27,7 @@ lab:
 
     ![デプロイされたすべての Azure リソースを示すスクリーンショット。](../media/07-media/azure-resources-created.png)
 
-### Azure AI Search サービスの REST API 情報をコピーする
+## Azure AI Search サービスの REST API 情報をコピーする
 
 1. リソースの一覧で、作成した検索サービスを選択します。 上の例では、**acs118245-search-service** です。
 1. 検索サービス名をテキスト ファイルにコピーします。
@@ -35,33 +35,18 @@ lab:
     ![検索サービスの [キー] セクションのスクリーンショット。](../media/07-media/search-api-keys-exercise-version.png)
 1. 左側の **[キー]** を選択し、**[プライマリ管理者キー]** を同じテキスト ファイルにコピーします。
 
-### サンプル コードをダウンロードする
+## コード例をダウンロードして Visual Studio Code で使用する
 
-Azure portal の上部にある [Cloud Shell] ボタンを選んで Azure Cloud Shell を開きます。
-> **注** Azure Storage アカウントの作成を求められた場合は、**[ストレージの作成]** を選びます。
+Visual Studio Code を使用して Azure サンプル コードを実行します。 コード ファイルは、GitHub リポジトリで提供されています。
 
-1. 起動が完了したら、Cloud Shell で以下のコマンドを実行して、次のサンプル コード リポジトリをクローンします。
+1. Visual Studio Code を起動します。
+1. パレットを開き (SHIFT+CTRL+P)、**Git:Clone** コマンドを実行して、`https://github.com/MicrosoftLearning/mslearn-knowledge-mining` リポジトリをローカル フォルダーに複製します (どのフォルダーでも問題ありません)。
+1. リポジトリを複製したら、Visual Studio Code でフォルダーを開きます。
+1. リポジトリ内の C# コード プロジェクトをサポートするために追加のファイルがインストールされるまで待ちます。
 
-    ```powershell
-    git clone https://github.com/Azure-Samples/azure-search-dotnet-scale.git samples
-    ```
+    > **注**: ビルドとデバッグに必要なアセットを追加するように求めるプロンプトが表示された場合は、**[今はしない]** を選択します。
 
-1. 以下を実行して、新しく作成したディレクトリに移動します。
-
-    ```powershell
-    cd samples
-    ```
-
-1. 次に、次のコマンドを実行します。
-
-    ```powershell
-    code ./optimize-data-indexing/v11
-    ```
-
-1. その結果、`/optimize-data-indexing/v11` フォルダーで、Cloud Shell 内にコード エディターが開きます。
-
-    ![セットアップ通知を示す VS Code のスクリーンショット。](../media/07-media/setup-visual-studio-code-solution.png)
-1. 左側のナビゲーションで **OptimizeDataIndexing** フォルダーを展開し、**appsettings.json** ファイルを選択します。
+1. 左側のナビゲーションで **optimize-data-indexing/v11/OptimizeDataIndexing** フォルダーを展開してから、**appsettings.json** ファイルを選択します。
 
     ![appsettings.json ファイルの内容を示すスクリーンショット。](../media/07-media/update-app-settings.png)
 1. 検索サービス名とプライマリ管理者キーを貼り付けます。
@@ -76,36 +61,29 @@ Azure portal の上部にある [Cloud Shell] ボタンを選んで Azure Cloud 
 
     設定ファイルは上記のようになるはずです。
 1. **Ctrl + S** キーを押して変更を保存します。
-1. **OptimizeDataIndexing.csproj** ファイルを選びます。 <!-- Added this and the next two steps in case we can't update the file in the repo that holds these (seems to be separate from the other labs)-->
-1. 5 行目の `<TargetFramework>netcoreapp3.1</TargetFramework>` を `<TargetFramework>net7.0</TargetFramework>` に変更します。 <!--- can be removed if no longer needed based on the above-->
-1. **Ctrl + S** キーを押して変更を保存します。<!--- can be removed if no longer needed based on the above-->
-1. ターミナルで「`cd ./optimize-data-indexing/v11/OptimizeDataIndexing`」と入力し、**Enter** キーを押して正しいディレクトリに変更します。
-1. **Program.cs** ファイルを選択します。 次に、ターミナルで「`dotnet run`」と入力し、**Enter** キーを押します。
+1. **OptimizeDataIndexing** フォルダーを右クリックし、**[統合ターミナルで開く]** を選択します。
+1. ターミナルで「`dotnet run`」と入力し、**Enter** キーを押します。
 
     ![例外がある VS Code で実行中のアプリを示すスクリーンショット。](../media/07-media/debug-application.png)
-出力は、この場合、最もパフォーマンスの高いバッチ サイズが 900 ドキュメントであることを示しています。 1 秒あたり 3.688 MB に達しているためです。
+出力は、この場合、最もパフォーマンスの高いバッチ サイズが 900 ドキュメントであることを示しています。 1 秒あたり 6.071 MB に達しているためです。
 
-### コードを編集してスレッド処理およびバックオフと再試行の戦略を実装する
+## コードを編集してスレッド処理およびバックオフと再試行の戦略を実装する
 
 スレッドを使用してドキュメントを検索インデックスにアップロードするようにアプリを変更する準備ができているコードがコメントアウトされています。
 
 1. **Program.cs** を選んでいることを確認します。
 
     ![Program.cs ファイルを示す VS Code のスクリーンショット。](../media/07-media/edit-program-code.png)
-1. 次のように 38 行目と 39 行目をコメント アウトします。
+1. 次のように 37 行目と 38 行目をコメント アウトします。
 
     ```csharp
     //Console.WriteLine("{0}", "Finding optimal batch size...\n");
     //await TestBatchSizesAsync(searchClient, numTries: 3);
     ```
 
-1. 41 行目から 49 行目のコメントを解除します。
+1. 44 行目から 48 行目のコメントを解除します。
 
     ```csharp
-    long numDocuments = 100000;
-    DataGenerator dg = new DataGenerator();
-    List<Hotel> hotels = dg.GetHotels(numDocuments, "large");
-
     Console.WriteLine("{0}", "Uploading using exponential backoff...\n");
     await ExponentialBackoff.IndexDataAsync(searchClient, hotels, 1000, 8);
 
@@ -122,7 +100,6 @@ Azure portal の上部にある [Cloud Shell] ボタンを選んで Azure Cloud 
 1. ターミナルを選び、実行中のプロセスをまだ終了していない場合は、任意のキーを押して終了します。
 1. ターミナルで `dotnet run` を実行します。
 
-    ![コンソールでの完了メッセージを示すスクリーンショット。](../media/07-media/upload-hundred-thousand-documents.png)
     アプリによって 8 つのスレッドが開始され、各スレッドではコンソールへの新しいメッセージの書き込みが完了します。
 
     ```powershell
@@ -162,7 +139,7 @@ Azure portal で、インデックスにドキュメントが追加されてい�
 
 ![100,000 個のドキュメントを含む検索インデックスを示すスクリーンショット。](../media/07-media/check-search-service-index.png)
 
-### クリーンアップ
+## クリーンアップ
 
 これで演習が完了したので、不要になったすべてのリソースを削除します。 まずはコンピューターにクローンされたコードから始めます。 その後、Azure リソースを削除します。
 

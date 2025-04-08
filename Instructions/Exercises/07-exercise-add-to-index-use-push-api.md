@@ -35,20 +35,47 @@ lab:
     ![検索サービスの [キー] セクションのスクリーンショット。](../media/07-media/search-api-keys-exercise-version.png)
 1. 左側の **[キー]** を選択し、**[プライマリ管理者キー]** を同じテキスト ファイルにコピーします。
 
-## コード例をダウンロードして Visual Studio Code で使用する
+## Cloud Shell でリポジトリをクローンします。
 
-Visual Studio Code を使用して Azure サンプル コードを実行します。 コード ファイルは、GitHub リポジトリで提供されています。
+Azure portal から Cloud Shell を使用してコード開発を行います。 アプリのコード ファイルは、GitHub リポジトリで提供されています。
 
-1. Visual Studio Code を起動します。
-1. パレットを開き (SHIFT+CTRL+P)、**Git:Clone** コマンドを実行して、`https://github.com/MicrosoftLearning/mslearn-knowledge-mining` リポジトリをローカル フォルダーに複製します (どのフォルダーでも問題ありません)。
-1. リポジトリを複製したら、Visual Studio Code でフォルダーを開きます。
-1. リポジトリ内の C# コード プロジェクトをサポートするために追加のファイルがインストールされるまで待ちます。
+> **ヒント**: **mslearn-knowledge-mining** リポジトリを最近クローンした場合は、このタスクをスキップできます。 それ以外の場合は、次の手順に従って開発環境に複製します。
 
-    > **注**: ビルドとデバッグに必要なアセットを追加するように求めるプロンプトが表示された場合は、**[今はしない]** を選択します。
+1. Azure portal で、ページ上部の検索バーの右側にある **[\>_]** ボタンを使用して、Azure portal に新しい Cloud Shell を作成し、***PowerShell*** 環境を選択します。 Azure portal の下部にあるペインに、Cloud Shell のコマンド ライン インターフェイスが表示されます。
 
-1. 左側のナビゲーションで **optimize-data-indexing/v11/OptimizeDataIndexing** フォルダーを展開してから、**appsettings.json** ファイルを選択します。
+    > **注**: *Bash* 環境を使用するクラウド シェルを以前に作成した場合は、それを ***PowerShell*** に切り替えます。
+
+1. Cloud Shell ツール バーの **[設定]** メニューで、**[クラシック バージョンに移動]** を選択します (これはコード エディターを使用するのに必要です)。
+
+    > **ヒント**: Cloudshell にコマンドを貼り付けると、出力が大量のスクリーン バッファーを占有する可能性があります。 `cls` コマンドを入力して、各タスクに集中しやすくすることで、スクリーンをクリアできます。
+
+1. PowerShell ペインで、次のコマンドを入力して、この演習用の GitHub リポジトリを複製します。
+
+    ```
+    rm -r mslearn-knowledge-mining -f
+    git clone https://github.com/microsoftlearning/mslearn-knowledge-mining mslearn-knowledge-mining
+    ```
+
+1. リポジトリが複製されたら、アプリケーション コード ファイルを含んだフォルダーに移動します。  
+
+    ```
+   cd mslearn-knowledge-mining/Labfiles/07-exercise-add-to-index-use-push-api/OptimizeDataIndexing
+    ```
+
+## アプリケーションの設定
+
+1. `ls` コマンドを使用すると、**OptimizeDataIndexing** フォルダーの内容を表示できます。 構成設定用の `appsettings.json` ファイルが含まれていることに注意してください。
+
+1. 次のコマンドを入力して、提供されている構成ファイルを編集します。
+
+    ```
+   code appsettings.json
+    ```
+
+    このファイルをコード エディターで開きます。
 
     ![appsettings.json ファイルの内容を示すスクリーンショット。](../media/07-media/update-app-settings.png)
+
 1. 検索サービス名とプライマリ管理者キーを貼り付けます。
 
     ```json
@@ -60,30 +87,40 @@ Visual Studio Code を使用して Azure サンプル コードを実行しま�
     ```
 
     設定ファイルは上記のようになるはずです。
-1. **Ctrl + S** キーを押して変更を保存します。
-1. **OptimizeDataIndexing** フォルダーを右クリックし、**[統合ターミナルで開く]** を選択します。
+   
+1. プレースホルダーを置き換えたら、**Ctrl + S** キー コマンドを使用して変更を保存してから、**Ctrl + Q** キー コマンドを使用して、Cloud Shell コマンド ラインを開いたままコード エディターを閉じます。
 1. ターミナルで「`dotnet run`」と入力し、**Enter** キーを押します。
 
     ![例外がある VS Code で実行中のアプリを示すスクリーンショット。](../media/07-media/debug-application.png)
-出力は、この場合、最もパフォーマンスの高いバッチ サイズが 900 ドキュメントであることを示しています。 1 秒あたり 6.071 MB に達しているためです。
+
+    この場合、最もパフォーマンスの高いバッチ サイズが、最高転送速度 (MB/秒) で 900 ドキュメントであることが出力に表示されます。
+   
+    >**注**: 転送レートの値は、スクリーンショットに表示されているものと異なる場合があります。 しかし、それでも最もパフォーマンスの高いバッチ サイズは同じであるはずです。 
 
 ## コードを編集してスレッド処理およびバックオフと再試行の戦略を実装する
 
 スレッドを使用してドキュメントを検索インデックスにアップロードするようにアプリを変更する準備ができているコードがコメントアウトされています。
 
-1. **Program.cs** を選んでいることを確認します。
+1. クライアント アプリケーションのコード ファイルを開く次のコマンドを入力します。
 
-    ![Program.cs ファイルを示す VS Code のスクリーンショット。](../media/07-media/edit-program-code.png)
-1. 次のように 37 行目と 38 行目をコメント アウトします。
+    ```
+   code Program.cs
+    ```
+
+1. 次のように 38 行目と 39 行目をコメント アウトします。
 
     ```csharp
     //Console.WriteLine("{0}", "Finding optimal batch size...\n");
     //await TestBatchSizesAsync(searchClient, numTries: 3);
     ```
 
-1. 44 行目から 48 行目のコメントを解除します。
+1. 41 行目から 49 行目のコメントを解除します。
 
     ```csharp
+    long numDocuments = 100000;
+    DataGenerator dg = new DataGenerator();
+    List<Hotel> hotels = dg.GetHotels(numDocuments, "large");
+
     Console.WriteLine("{0}", "Uploading using exponential backoff...\n");
     await ExponentialBackoff.IndexDataAsync(searchClient, hotels, 1000, 8);
 
@@ -94,9 +131,10 @@ Visual Studio Code を使用して Azure サンプル コードを実行しま�
     スレッドのバッチ サイズと数を制御するコードは `await ExponentialBackoff.IndexDataAsync(searchClient, hotels, 1000, 8)` です。 バッチ サイズは 1000 で、スレッドは 8 です。
 
     ![編集されたすべてのコードを示すスクリーンショット。](../media/07-media/thread-code-ready.png)
+
     コードは上記のようになるはずです。
 
-1. 変更を保存し、**Ctrl**+**S** キーを押します。
+1. 変更を保存。
 1. ターミナルを選び、実行中のプロセスをまだ終了していない場合は、任意のキーを押して終了します。
 1. ターミナルで `dotnet run` を実行します。
 

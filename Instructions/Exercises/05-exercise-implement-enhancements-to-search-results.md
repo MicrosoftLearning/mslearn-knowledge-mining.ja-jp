@@ -83,29 +83,29 @@ Azure portal では、ドキュメント内の最初のフィールドを翻訳�
 
 1. ページの上部にある検索サービス **advanced-search-service-12345 |Indexes** リンクを選びます。
 1. 左ペインにある [検索管理] で **[スキルセット]** を選び、次に **hotels-sample-skillset** を選びます。
-1. JSON ドキュメントを編集し、行 11 を次に変更します。
+1. JSON ドキュメントを編集し、9 行目を次に変更します。
 
     ```json
     "context": "/document/Description",
     ```
 
-1. 12 行目の既定の開始言語を英語に変更します。
+1. 11 行目の既定の開始言語を英語に変更します。
 
     ```json
     "defaultFromLanguageCode": "en",
     ```
 
-1. 18 行目のソース フィールドを次に変更します。
+1. 15 行目のソース フィールドを次に変更します。
 
     ```json
-    "source": "/document/Description"
+    "source": "/document/Description",
     ```
 
 1. **[保存]** を選択します。
 1. ページの上部にある検索サービス **advanced-search-service-12345 | Skillsets** リンクを選びます。
 1. **[概要]** ペインで **[インデクサー]** を選択し、**[hotels-sample-indexer]** を選択します。
-1. **[インデクサー定義 (JSON)]** を選択します。
-1. 21 行目のソース フィールド名を次に変更します。
+1. **[JSON の編集]** を選択します。
+1. 20 行目のソース フィールド名を次に変更します。
 
     ```json
     "sourceFieldName": "/document/Description/Description_pt",
